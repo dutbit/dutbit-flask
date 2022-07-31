@@ -1,0 +1,15 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["standard", "prettier"],
+  "plugins": ["html"],
+  "parserOptions": { "ecmaVersion": "latest" },
+  "rules": {
+    "curly": ["error", "multi"],
+    "no-tabs": "error",
+    "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": false }],
+    "no-sequences": ["error", { "allowInParentheses": false }]
+  }
+}

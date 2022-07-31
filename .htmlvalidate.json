@@ -1,0 +1,7 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-inline-style": "warn",
+    "void-style": ["error", { "style": "selfclosing" }]
+  }
+}

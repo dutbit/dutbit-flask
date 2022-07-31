@@ -1,0 +1,20 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "kevinrose.vsc-python-indent",
+        "njpwerner.autodocstring",
+        "ericsia.pythonsnippets3",
+        "cstrap.flask-snippets",
+        "noxiz.jinja-snippets",
+        "samuelcolvin.jinjahtml",
+        "monosans.djlint",
+        "mkaufman.htmlhint",
+        "html-validate.vscode-html-validate",
+        "esbenp.prettier-vscode",
+        "yzhang.markdown-all-in-one",
+        "shd101wyy.markdown-preview-enhanced",
+        "davidanson.vscode-markdownlint",
+        "stylelint.vscode-stylelint"
+    ]
+}

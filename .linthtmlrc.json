@@ -1,0 +1,14 @@
+{
+  "maxerr": false,
+  "text-ignore-regex": false,
+  "raw-ignore-regex": false,
+  "attr-name-ignore-regex": false,
+  "id-class-ignore-regex": false,
+  "line-max-len-ignore-regex": false,
+  "rules": {
+    "indent-width": ["error", 2],
+    "line-end-style": "off",
+    "line-no-trailing-whitespace": "warning",
+    "class-style": ["error", "bem"]
+  }
+}

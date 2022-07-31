@@ -1,0 +1,52 @@
+{
+  "files.associations": {
+    "**/templates/*.html": "jinja-html"
+  },
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pydocstyleEnabled": true,
+  "python.linting.flake8Args": ["--max-line-length=120", "--extend-ignore=E203"],
+  "python.formatting.autopep8Args": ["--max-line-length=120"],
+  "python.formatting.blackArgs": ["--line-length=120"],
+  "python.formatting.provider": "black",
+  "python.linting.pylintArgs": [
+    "--max-line-length=120",
+    "--disable=C0114,C0115,C0116,W0703",
+    "--module-naming-style=camelCase",
+    "--function-rgx=_?[a-z][a-z0-9]*+([A-Z][a-z0-9]*)*(_[a-z][a-z0-9]*+([A-Z][a-z0-9]*)*)*$",
+    "--argument-rgx=_?[a-z][a-z0-9]*+([A-Z][a-z0-9]*)*(_[a-z][a-z0-9]*+([A-Z][a-z0-9]*)*)*$",
+    "--variable-rgx=_?[a-z][a-z0-9]*+([A-Z][a-z0-9]*)*(_[a-z][a-z0-9]*+([A-Z][a-z0-9]*)*)*$",
+    "--generated-members=app.logger",
+    "--ignored-classes=SQLAlchemy,Column,scoped_session"
+  ],
+  "python.linting.pydocstyleArgs": ["--ignore=D1"],
+  "python.sortImports.args": ["--profile=black"],
+  "html-validate.validate": ["html", "javascript", "markdown", "vue", "vue-html", "jinja-html"],
+  "html-validate.trace.server": "messages",
+  "djlint.useVenv": false,
+  "djlint.ignore": ["H021"],
+  "prettier.printWidth": 120,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "markdownlint.config": {
+    "MD024": { "siblings_only": true }
+  },
+  "htmlhint.documentSelector": ["jinja-html", "html", "htm"],
+  "htmlhint.options": {
+    "tagname-lowercase": true,
+    "attr-lowercase": true,
+    "attr-value-double-quotes": true,
+    "doctype-first": true,
+    "tag-pair": true,
+    "spec-char-escape": true,
+    "id-unique": true,
+    "src-not-empty": true,
+    "attr-no-duplication": true,
+    "title-require": true,
+    "head-script-disabled": true,
+    "id-class-ad-disabled": true,
+    "inline-script-disabled": true
+  },
+  "stylelint.validate": ["css", "less", "postcss", "html"]
+}

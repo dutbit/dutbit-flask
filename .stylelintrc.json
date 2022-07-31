@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-prettier",
+    "stylelint-config-html",
+    "stylelint-config-recess-order"
+  ],
+  "overrides": [{ "files": ["**/*.html"], "customSyntax": "postcss-html" }],
+  "plugins": ["stylelint-selector-bem-pattern"],
+  "rules": {
+    "selector-class-pattern": "^[a-z]+(?:-[a-z0-9]+)*(?:__[a-z][a-z0-9]*(?:-[a-z0-9]+)*)?(?:--[a-z][a-z0-9]*(?:-[a-z0-9]+)*)?$",
+    "selector-id-pattern": "^[a-z]+(?:-[a-z0-9]+)*(?:__[a-z][a-z0-9]*(?:-[a-z0-9]+)*)?(?:--[a-z][a-z0-9]*(?:-[a-z0-9]+)*)?$",
+    "plugin/selector-bem-pattern": {
+      "preset": "bem",
+      "componentName": "^[a-z]+(?:-[a-z0-9]+)*$",
+      "componentSelectors": {
+        "initial": "^\\.{componentName}(?:__[a-z][a-z0-9]*(?:-[a-z0-9]+)*)?(?:--[a-z][a-z0-9]*(?:-[a-z0-9]+)*)?(?:\\[.+\\])?\\S*$",
+        "combined": "^\\S*$"
+      }
+    }
+  }
+}
