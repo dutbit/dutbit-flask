@@ -25,7 +25,7 @@ def r_voltime():
     return dictR
 
 
-@voltime.route("/lastdate")
+@voltime.route("/last-date")
 @cache.memoize(2000)
 def r_voltime_lastdate():
     lastDate = db.session.query(Voltime.date).order_by(Voltime.date.desc()).limit(1).scalar()
