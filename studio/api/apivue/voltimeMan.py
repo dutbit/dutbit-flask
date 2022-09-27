@@ -1,3 +1,5 @@
+import datetime
+
 from flask import Blueprint, current_app, request
 from flask_sqlalchemy import BaseQuery
 from sqlalchemy.exc import NoResultFound, OperationalError
@@ -35,6 +37,7 @@ def r_voltimeman_insert():
     nRows_old = getTotal()
     try:
         for row in request.get_json()["list"]:
+            row["date"] = datetime.datetime.strptime(row["date"], "%Y/%m/%d")
             db.session.add(Voltime(**dfln(row)))
         db.session.commit()
     except TypeError as e:
