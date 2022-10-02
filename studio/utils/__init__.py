@@ -9,7 +9,7 @@ cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
 
 def logger_handler():
     Path.mkdir(Path("log"), exist_ok=True)
-    handler = TimedRotatingFileHandler("log/studio.log", when="W0")
+    handler = TimedRotatingFileHandler("log/studio.log", when="W0", delay=True)
     formatter = Formatter("[%(asctime)s] %(levelname)s:%(name)s - %(pathname)s:%(lineno)s in %(funcName)s: %(message)s")
     handler.setFormatter(formatter)
     return handler
