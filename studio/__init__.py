@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from flask import Flask
-
+from flask_migrate import Migrate
 from studio.models import db
 
 from .api.apivue import apivue
@@ -23,6 +23,10 @@ def create_app():
     # 插件初始化
     db.init_app(app)
     cache.init_app(app)
+
+    # 添加数据库迁移
+    migrate = Migrate()
+    migrate.init_app(app, db)
 
     # 配置日志记录器
     app.logger.addHandler(logger_handler())

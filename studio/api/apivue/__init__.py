@@ -14,6 +14,7 @@ from .pointMan import point_man
 from .user import user
 from .voltime import voltime
 from .voltimeMan import voltime_man
+from .enroll import enroll
 
 apivue = Blueprint("apivue", __name__, url_prefix="/apivue")
 apivue.register_blueprint(dayimgO)
@@ -23,6 +24,7 @@ apivue.register_blueprint(point_man)
 apivue.register_blueprint(user)
 apivue.register_blueprint(voltime)
 apivue.register_blueprint(voltime_man)
+apivue.register_blueprint(enroll)
 CORS(apivue)
 
 

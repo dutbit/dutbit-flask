@@ -15,6 +15,7 @@ from .point import PointPoints, PointTypes  # noqa: F401
 from .route import RouteInterceptors  # noqa: F401
 from .user import UserGroupMembersRe, UserGroups, UserUsers  # noqa: F401
 from .voltime import Voltime, VoltimeDupname  # noqa: F401
+from .enroll import EnrollCandidates, EnrollDepts, EnrollTurns
 
 
 @event.listens_for(Session, "before_flush")
@@ -52,7 +53,7 @@ def before_flush(session: Session, _flush_context, _instances):
     for instance in session.deleted:
         make_transient(instance)  # 取消当前操作
         session.query(instance.__class__).filter_by(id=instance.id).update({"deleted": True})  # 添加删除标记
-
+        print(g.user)
         edit = EditHistory(type="deleted", table_name=instance.__tablename__, row_id=instance.id, edit_by=g.user.id)
         session.add(edit)
 

@@ -10,7 +10,8 @@ def global_interceptor():
         return abort_err(463, login_target=request.path)
 
     if payload is None:
-        g.user = None
+        # 没有 payload 证明没有 Authorization过程，是外部的 api 调用
+        g.user = get_user(0)
     else:
         g.user = get_user(payload["id"])
         current_app.logger.info(f"user id: {g.user.id}")
