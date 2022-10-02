@@ -1,6 +1,6 @@
 from flask import Blueprint, g, request
 from studio.models import IssueDutyUsersRe, IssueIssues, IssueTypes, UserUsers, db
-from studio.utils import dfl, listf
+from studio.utils import dfl, dfln, listf
 from studio.utils.mail import send_mail
 
 issue = Blueprint("issue", __name__, url_prefix="/issue")
@@ -9,8 +9,10 @@ issue = Blueprint("issue", __name__, url_prefix="/issue")
 @issue.route("/", methods=["GET", "POST"])
 def r_issue():
     if request.method == "GET":
-        lsttTypes = db.session.query(IssueTypes.type_name).filter(IssueTypes.priority > 20).all()
-        return {"lstTypes": listf(lsttTypes)}
+        dictR = {"lstdTypes": []}  # dictResp
+        for row in IssueTypes.query.filter(IssueTypes.priority > 20).all():
+            dictR["lstdTypes"].append(dfln(row.__dict__, ["_sa_instance_state"]))
+        return dictR
     if request.method == "POST":
         dictReq = request.get_json()
         issue = IssueIssues(
