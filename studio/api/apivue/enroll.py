@@ -63,7 +63,7 @@ def r_delete_dept():
 @enroll.route("/createDept", methods=["POST"])
 def r_create_dept():
     dictReq = request.get_json()["dept"]
-    dept = EnrollDepts(deptName=dictReq["deptName"])
+    dept = EnrollDepts(dept_name=dictReq["deptName"])
     db.session.add(dept)
     db.session.commit()
     return {"success": True}
@@ -129,7 +129,7 @@ def r_delete_turn():
 @enroll.route("/createTurn", methods=["POST"])
 def r_create_turn():
     dictReq = request.get_json()["turn"]
-    turn = EnrollTurns(turnName=dictReq["turnName"])
+    turn = EnrollTurns(turn_name=dictReq["turnName"])
     turn.activated = 0
     db.session.add(turn)
     db.session.commit()

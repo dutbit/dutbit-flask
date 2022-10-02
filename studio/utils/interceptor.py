@@ -9,6 +9,10 @@ def global_interceptor():
     if payload == "ExpiredSignature":
         return abort_err(463, login_target=request.path)
 
+    # 直接放行 OPTIONS 请求，否则预检请求可能无法得以正确响应
+    if request.method == "OPTIONS":
+        return None
+
     if payload is None:
         # 没有 payload 证明没有 Authorization过程，是外部的 api 调用
         g.user = get_user(0)
