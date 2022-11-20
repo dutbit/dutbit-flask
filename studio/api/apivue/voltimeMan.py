@@ -59,7 +59,10 @@ def r_voltimeman_update():
         dictReq = dfln(request.get_json())
         resV = Voltime.query.filter_by(id=dictReq["id"]).one()
         for k in dictReq.keys():
-            setattr(resV, k, dictReq[k])  # 事件被before_flush拦截
+            if k == "date":
+                setattr(resV, k, datetime.datetime.strptime(dictReq[k], "%Y-%m-%d"))
+            else:
+                setattr(resV, k, dictReq[k])  # 事件被before_flush拦截
         db.session.add(resV)
 
         # 以下事件被do_orm_execute拦截

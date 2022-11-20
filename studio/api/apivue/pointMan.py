@@ -36,12 +36,14 @@ def r_pointman_upsert():
             resP = PointPoints.query.filter_by(**dfl(dictRow, ["type_id", "stu_id", "name"])).one_or_none()
             if resP is None:
                 print("insert")
-                db.session.add(PointPoints(**dfln(resP, ["id"])))
+                db.session.add(PointPoints(**dfln(dictRow, ["id"])))
             else:
                 print("update")
                 for k in dictRow.keys():
                     setattr(resP, k, dictRow[k])  # 事件被before_flush拦截
                 db.session.add(resP)
+            # TODO: 这里逻辑存在问题, 将逻辑全部改为追加
+            # db.session.add(PointPoints(**dfln(dictRow, ["id"])))
         db.session.commit()
     except TypeError as e:
         current_app.logger.error(e)
