@@ -15,4 +15,4 @@ def db_create_all():
 
 if __name__ == "__main__":
     # db_create_all()
-    app.run()
+    app.run(debug=False)

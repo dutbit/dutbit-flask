@@ -16,6 +16,7 @@ from .route import RouteInterceptors  # noqa: F401
 from .user import UserGroupMembersRe, UserGroups, UserUsers  # noqa: F401
 from .voltime import Voltime, VoltimeDupname  # noqa: F401
 from .enroll import EnrollCandidates, EnrollDepts, EnrollTurns
+from .media import MediaList
 
 
 @event.listens_for(Session, "before_flush")
