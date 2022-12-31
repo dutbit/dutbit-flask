@@ -49,6 +49,9 @@ def r_gen_media():
         db.session.add(media_query)
         db.session.commit()
     # 在这里启动视频制作
+    print("所选图片", img_name)
+    if img_name is None:
+        img_name = "1.png"
     gen_media(title, wish_texts, img_name, name_md5)
     # 视频制作完成，更新数据库
     media_query = MediaList.query.filter(MediaList.name == name).first()
