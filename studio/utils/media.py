@@ -2,7 +2,7 @@ import os
 import math
 
 postcard = """
-from manimlib import *
+from manim import *
 
 
 class PostcardText(Scene):
@@ -11,14 +11,14 @@ class PostcardText(Scene):
         title.set_width(2.2)
         title.set_max_height(0.5)
         title.set_color(RED_B).set_x(3.95).set_y(0.75)
-        content = MarkupText("{content}", font="宋体", font_size=16, color=GREY_D, lsh=0.8)
+        content = Text("{content}", font="宋体", font_size=16, color=GREY_D)
         content.set_width(2.2)
         content.next_to(title, DOWN)
         img = ImageMobject("{img_url}")
-        img.scale(2)
+        img.scale(1.25)
         self.play(FadeIn(img))
         self.play(Write(title))
-        self.play(FadeIn(content, UP))
+        self.play(FadeIn(content, shift=UP))
         self.wait(3)
 
 """
@@ -51,6 +51,9 @@ def gen_media(title, raw_content, img_name, file_name):
     lines = [line.replace("\n", "") for line in lines if line != '']
     content = ""
     for line in lines:
+        # 空行跳过
+        if line == '':
+            continue
         content += line
         content += "\\n"
     # 最大8个字符，否则换行
@@ -58,4 +61,4 @@ def gen_media(title, raw_content, img_name, file_name):
     f = open(f"studio/tmp/{file_name}.py", "w", encoding="utf-8")
     f.write(code_str)
     f.close()
-    os.system(f"manimgl studio/tmp/{file_name}.py -w --file_name {file_name}.mp4 --video_dir studio/tmp")
+    os.system(f"manim studio/tmp/{file_name}.py -q m --format mp4 -o {file_name}.mp4 --media_dir studio/tmp")

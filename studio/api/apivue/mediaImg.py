@@ -15,8 +15,8 @@ def r_download_media():
     if media_id is None:
         return {"success": False, "detail": "请求非法"}
 
-    temp_dir = os.getcwd() + "/studio/tmp/videos/"
     media = MediaList.query.filter(MediaList.media_id == media_id).first()
+    temp_dir = os.getcwd() + f"/studio/tmp/videos/{media.media_id}/720p30/"
     if media is None:
         return {"success": False, "detail": "请求非法"}
     if media.status == 0:
