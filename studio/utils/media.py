@@ -62,3 +62,4 @@ def gen_media(title, raw_content, img_name, file_name):
     f.write(code_str)
     f.close()
     os.system(f"manim studio/tmp/{file_name}.py -q m --format mp4 -o {file_name}.mp4 --media_dir studio/tmp")
+    os.system(f"ffmpeg -i studio/tmp/videos/{file_name}/720p30/{file_name}.mp4 -f image2 -r 1 -ss 00:00:05 -vframes 1 studio/tmp/videos/{file_name}/720p30/preview.png")
