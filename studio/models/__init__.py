@@ -55,7 +55,12 @@ def before_flush(session: Session, _flush_context, _instances):
         make_transient(instance)  # 取消当前操作
         session.query(instance.__class__).filter_by(id=instance.id).update({"deleted": True})  # 添加删除标记
         print(g.user)
-        edit = EditHistory(type="deleted", table_name=instance.__tablename__, row_id=instance.id, edit_by=g.user.id)
+        # edit_by 应当是 g.user.id
+        if g.user is not None:
+            user_id = g.user.id
+        else:
+            user_id = 1
+        edit = EditHistory(type="deleted", table_name=instance.__tablename__, row_id=instance.id, edit_by=user_id)
         session.add(edit)
 
 

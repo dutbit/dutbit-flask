@@ -140,7 +140,8 @@ def r_create_turn():
 def r_submit():
     dictReq = request.get_json()
     enrollCandidate = EnrollCandidates(
-        **dfl(dictReq, ["stu_id", "name", "sex", "faculty", "tel",
+        **dfl(dictReq, ["stu_id", "name", "sex", "faculty", "tel", "politic", "major",
+                        "major_class", "advantage", "other_advantage", "role", "birth_date", "student_exp",
                         "first_choice", "second_choice", "third_choice", "allow_adjust", "info", "turn_id"])
     )
     queryCandidate = db.session.query(EnrollCandidates) \
