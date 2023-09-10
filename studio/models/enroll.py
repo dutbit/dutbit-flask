@@ -32,4 +32,4 @@ class EnrollCandidates(db.Model, MixinBase):
 
 class EnrollDepts(db.Model, MixinBase):
     id = db.Column(db.Integer, primary_key=True)
-    dept_name = db.Column(db.String(20), nullable=False, comment="部门名称")
+    dept_name = db.Column(db.String(160), nullable=False, comment="部门名称")
