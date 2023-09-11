@@ -22,7 +22,6 @@ def upgrade():
     op.add_column('enroll_candidates', sa.Column('birth_date', sa.Text(), nullable=True))
     op.add_column('enroll_candidates', sa.Column('role', sa.Text(), nullable=True))
     op.add_column('enroll_candidates', sa.Column('student_exp', sa.Text(), nullable=True))
-    op.drop_column('enroll_candidates', 'otherAdvantage')
     op.alter_column('media_list', 'media_id',
                existing_type=mysql.VARCHAR(charset='utf8mb4', collation='utf8mb4_general_ci', length=1024),
                comment='视频ID',
