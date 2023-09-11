@@ -145,13 +145,14 @@ def r_submit():
                         "first_choice", "second_choice", "third_choice", "allow_adjust", "info", "turn_id"])
     )
     queryCandidate = db.session.query(EnrollCandidates) \
-        .filter(and_(or_(EnrollCandidates.stu_id == enrollCandidate.id, EnrollCandidates.name == enrollCandidate.name),
+        .filter(and_(EnrollCandidates.stu_id == enrollCandidate.stu_id,
                      EnrollCandidates.turn_id == enrollCandidate.turn_id)).first()
     if queryCandidate is None:
         db.session.add(enrollCandidate)
         db.session.commit()
     else:
         # 存在当前批次的重复记录
+        print(f"学号: {queryCandidate.stu_id}, 提交重复")
         db.session.delete(queryCandidate)
         db.session.add(enrollCandidate)
         db.session.commit()
@@ -162,10 +163,11 @@ def r_submit():
 def r_verify_unique():
     dictReq = request.get_json()["info"]
     stuId = dictReq["stuId"]
-    name = dictReq["name"]
+    # name = dictReq["name"]
     turnId = dictReq["turnId"]
+    # 仅比较学号和批次
     queryCandidate = db.session.query(EnrollCandidates) \
-        .filter(and_(or_(EnrollCandidates.stu_id == stuId, EnrollCandidates.name == name),
+        .filter(and_(EnrollCandidates.stu_id == stuId,
                      EnrollCandidates.turn_id == turnId)).first()
     if queryCandidate is None:
         return {"unique": True}
@@ -203,6 +205,14 @@ def r_get_enroll_list():
             "secondChoice": candidate.second_choice,
             "thirdChoice": candidate.third_choice,
             "info": candidate.info,
-            "turnId": candidate.turn_id
+            "turnId": candidate.turn_id,
+            "politic": candidate.politic,
+            "major": candidate.major,
+            "majorClass": candidate.major_class,
+            "advantage": candidate.advantage,
+            "otherAdvantage": candidate.other_advantage,
+            "role": candidate.role,
+            "birthDate": candidate.birth_date,
+            "studentExp": candidate.student_exp
         })
     return {"enrollCandidates": result}
